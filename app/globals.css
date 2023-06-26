@@ -48,3 +48,16 @@ body {
 .navbar {
   @apply py-5 px-8 border-b border-nav-border gap-4;
 }
+
+/* Footer */
+.footer {
+  @apply flex-col paddings w-full gap-20 bg-light-white;
+}
+
+.footer_copyright {
+  @apply max-sm:flex-col w-full text-sm font-normal;
+}
+
+.footer_column {
+  @apply flex-1 flex flex-col gap-3 text-sm min-w-max;
+}
