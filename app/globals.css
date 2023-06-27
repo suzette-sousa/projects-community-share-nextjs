@@ -44,6 +44,10 @@ body {
   border-radius: 12px;
 }
 
+.no-result-text {
+  @apply w-full text-center my-10 px-2;
+}
+
 /* Navbar */
 .navbar {
   @apply py-5 px-8 border-b border-nav-border gap-4;
@@ -107,4 +111,9 @@ body {
 
 .custom_menu-item {
   @apply text-left w-full px-5 py-2 text-sm hover:bg-light-white-100 self-start whitespace-nowrap capitalize;
+}
+
+/* Home */
+.projects-grid {
+  @apply grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 mt-10 w-full;
 }
