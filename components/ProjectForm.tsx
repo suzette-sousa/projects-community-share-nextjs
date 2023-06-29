@@ -1,21 +1,22 @@
 'use client';
 
-import { SessionInterface } from '@/common.type';
+import { ProjectInterface, SessionInterface } from '@/common.type';
 import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
 import FormField from './FormField';
 import CustomMenu from './CustomMenu';
 import { categoryFilters } from '@/constants';
 import Button from './Button';
-import { createNewProject, fetchToken } from '@/lib/actions';
+import { createNewProject, fetchToken, updateProject } from '@/lib/actions';
 import { useRouter } from 'next/navigation';
 
 type Props = {
   type: string;
   session: SessionInterface;
+  project?: ProjectInterface;
 };
 
-const ProjectForm = ({ type, session }: Props) => {
+const ProjectForm = ({ type, session, project }: Props) => {
   const router = useRouter();
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -26,8 +27,16 @@ const ProjectForm = ({ type, session }: Props) => {
     const { token } = await fetchToken();
 
     try {
+      console.log('type', type);
+      console.log('project?.id', project?.id);
       if (type === 'create') {
         await createNewProject(form, session?.user?.id, token);
+
+        router.push('/');
+      }
+
+      if (type === 'edit') {
+        await updateProject(form, project?.id as string, token);
 
         router.push('/');
       }
@@ -66,12 +75,12 @@ const ProjectForm = ({ type, session }: Props) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
-    image: '',
-    title: '',
-    description: '',
-    liveSiteUrl: '',
-    githubUrl: '',
-    category: '',
+    image: project?.image || '',
+    title: project?.title || '',
+    description: project?.description || '',
+    liveSiteUrl: project?.liveSiteUrl || '',
+    githubUrl: project?.githubUrl || '',
+    category: project?.category || '',
   });
 
   return (
