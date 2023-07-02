@@ -1,4 +1,4 @@
-import { ProjectInterface, UserProfile } from '@/common.types';
+import { ProjectInterface, UserProfile } from '@/common.type';
 import Image from 'next/image';
 
 import Link from 'next/link';
