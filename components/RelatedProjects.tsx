@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { getUserProjects } from '@/lib/actions';
-import { ProjectInterface, UserProfile } from '@/common.types';
+import { ProjectInterface, UserProfile } from '@/common.type';
 import Image from 'next/image';
 
 type Props = {
